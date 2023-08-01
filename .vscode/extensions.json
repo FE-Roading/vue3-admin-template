@@ -12,6 +12,7 @@
     "mikestead.dotenv",
     "eamodio.gitlens",
     "antfu.iconify",
-    "Vue.volar"
+    "vue.volar",
+    "jasonhzq.vscode-pont"
   ]
 }
