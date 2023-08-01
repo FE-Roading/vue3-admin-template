@@ -15,3 +15,4 @@
 - 环境要求：node 版本应不小于 `16` ，`pnpm` 版本应不小于 `6`。为解决 npm 包管理工具的兼容性，本项目已限制为`pnpm`包工具，请确保环境中已安装该工具。
 - Vue 版本：推荐使用`Vue3.3` Composition API 进行组件开发。
 - 接口生成：已接入`pont`插件自动有 `Swagger JSON`生成 TS API 接口文件（生成目录默认为`src/api`中，可以自行修改`pont-config.json`配置），请配置`Vscode pont`插件进行使用。
+- 代码提交：为规范代码提交时的消息格式，推荐使用`git cz`命令按提示填写提交信息，也可以使用`git commit -m "feat: 更新内容信息"`，`feat`可以使用`feat|fix|docs|style|refactor|perf|test|revert|chore`（各类型的说明可以查看`commitlint.config.js`配置）。

@@ -74,7 +74,10 @@
     "@vue/eslint-config-typescript": "^11.0.3",
     "autoprefixer": "^10.4.14",
     "cloc": "^2.11.0",
+    "commitizen": "^4.3.0",
+    "commitlint-config-cz": "^0.13.3",
     "cssnano": "^6.0.1",
+    "cz-customizable": "^7.0.0",
     "eslint": "^8.43.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-vue": "^9.15.1",
@@ -129,7 +132,9 @@
       "stable": "*"
     }
   },
-  "repository": "git@github.com:pure-admin/pure-admin-thin.git",
-  "author": "xiaoxian521",
-  "license": "MIT"
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  }
 }
