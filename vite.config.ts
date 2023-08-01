@@ -1,7 +1,7 @@
 import dayjs from "dayjs"
 import { resolve } from "path"
 import pkg from "./package.json"
-import { warpperEnv } from "./build"
+import { wrapperEnv as wrapperEnv } from "./build"
 import { getPluginsList } from "./build/plugins"
 import { include, exclude } from "./build/optimize"
 import { UserConfigExport, ConfigEnv, loadEnv } from "vite"
@@ -27,7 +27,7 @@ const __APP_INFO__ = {
 }
 
 export default ({ command, mode }: ConfigEnv): UserConfigExport => {
-  const { VITE_CDN, VITE_PORT, VITE_COMPRESSION, VITE_PUBLIC_PATH } = warpperEnv(loadEnv(mode, root))
+  const { VITE_CDN, VITE_PORT, VITE_COMPRESSION, VITE_PUBLIC_PATH } = wrapperEnv(loadEnv(mode, root))
   return {
     base: VITE_PUBLIC_PATH,
     root,
@@ -56,7 +56,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       chunkSizeWarningLimit: 4000,
       rollupOptions: {
         input: {
-          index: pathResolve("./public/index.html"),
+          index: pathResolve("index.html"),
         },
         // 静态资源分类打包
         output: {

@@ -1,5 +1,5 @@
 /** 处理环境变量 */
-const warpperEnv = (envConf: Recordable): ViteEnv => {
+const wrapperEnv = (envConf: Recordable): ViteEnv => {
   /** 此处为默认值 */
   const ret: ViteEnv = {
     VITE_PORT: 8848,
@@ -27,4 +27,4 @@ const warpperEnv = (envConf: Recordable): ViteEnv => {
   return ret
 }
 
-export { warpperEnv }
+export { wrapperEnv as wrapperEnv }
