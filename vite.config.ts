@@ -20,9 +20,9 @@ const alias: Record<string, string> = {
   "@build": pathResolve("build"),
 }
 
-const { dependencies, devDependencies, name, version } = pkg
+const { name, version } = pkg
 const __APP_INFO__ = {
-  pkg: { dependencies, devDependencies, name, version },
+  pkg: { name, version },
   lastBuildTime: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"),
 }
 
