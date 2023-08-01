@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "NODE_OPTIONS=--max-old-space-size=4096 vite",
     "serve": "pnpm dev",
-    "build": "rimraf dist && NODE_OPTIONS=--max-old-space-size=8192 vite build",
-    "build:staging": "rimraf dist && vite build --mode staging",
+    "build:prod": "rimraf dist && NODE_OPTIONS=--max-old-space-size=8192 vite build --mode prod",
+    "build:test": "rimraf dist && NODE_OPTIONS=--max-old-space-size=8192 vite build --mode test",
     "report": "rimraf dist && vite build",
     "preview": "vite preview",
     "preview:build": "pnpm build && vite preview",
