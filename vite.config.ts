@@ -56,7 +56,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       chunkSizeWarningLimit: 4000,
       rollupOptions: {
         input: {
-          index: pathResolve("./index.html"),
+          index: pathResolve("./public/index.html"),
         },
         // 静态资源分类打包
         output: {

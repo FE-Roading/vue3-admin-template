@@ -1,34 +1,22 @@
 <script setup lang="ts">
-import { getTopMenu } from "@/router/utils";
-import { useNav } from "@/layout/hooks/useNav";
+import { getTopMenu } from "@/router/utils"
+import { useNav } from "@/layout/hooks/useNav"
 
 const props = defineProps({
-  collapse: Boolean
-});
+  collapse: Boolean,
+})
 
-const { title } = useNav();
+const { title } = useNav()
 </script>
 
 <template>
   <div class="sidebar-logo-container" :class="{ collapses: props.collapse }">
     <transition name="sidebarLogoFade">
-      <router-link
-        v-if="props.collapse"
-        key="props.collapse"
-        :title="title"
-        class="sidebar-logo-link"
-        :to="getTopMenu()?.path ?? '/'"
-      >
+      <router-link v-if="props.collapse" key="props.collapse" :title="title" class="sidebar-logo-link" :to="getTopMenu()?.path ?? '/'">
         <img src="/logo.svg" alt="logo" />
         <span class="sidebar-title">{{ title }}</span>
       </router-link>
-      <router-link
-        v-else
-        key="expand"
-        :title="title"
-        class="sidebar-logo-link"
-        :to="getTopMenu()?.path ?? '/'"
-      >
+      <router-link v-else key="expand" :title="title" class="sidebar-logo-link" :to="getTopMenu()?.path ?? '/'">
         <img src="/logo.svg" alt="logo" />
         <span class="sidebar-title">{{ title }}</span>
       </router-link>

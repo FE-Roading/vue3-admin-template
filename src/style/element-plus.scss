@@ -59,8 +59,7 @@
   }
 
   & .peg {
-    box-shadow: 0 0 10px var(--el-color-primary),
-      0 0 5px var(--el-color-primary) !important;
+    box-shadow: 0 0 10px var(--el-color-primary), 0 0 5px var(--el-color-primary) !important;
   }
 
   & .spinner-icon {
@@ -120,8 +119,7 @@
   padding: 10px 13px !important;
   background: #fff !important;
   border-width: 0 !important;
-  box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014,
-    0 9px 28px 8px #0000000d !important;
+  box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d !important;
 
   &.el-message.is-closable .el-message__content {
     padding-right: 17px !important;

@@ -1,42 +1,31 @@
 <script setup lang="ts">
-import { emitter } from "@/utils/mitt";
-import { onClickOutside } from "@vueuse/core";
-import { ref, computed, onMounted, onBeforeUnmount } from "vue";
-import Close from "@iconify-icons/ep/close";
+import { emitter } from "@/utils/mitt"
+import { onClickOutside } from "@vueuse/core"
+import { ref, computed, onMounted, onBeforeUnmount } from "vue"
+import Close from "@iconify-icons/ep/close"
 
-const target = ref(null);
-const show = ref<Boolean>(false);
+const target = ref(null)
+const show = ref<Boolean>(false)
 
 const iconClass = computed(() => {
-  return [
-    "mr-[20px]",
-    "outline-none",
-    "width-[20px]",
-    "height-[20px]",
-    "rounded-[4px]",
-    "cursor-pointer",
-    "transition-colors",
-    "hover:bg-[#0000000f]",
-    "dark:hover:bg-[#ffffff1f]",
-    "dark:hover:text-[#ffffffd9]"
-  ];
-});
+  return ["mr-[20px]", "outline-none", "width-[20px]", "height-[20px]", "rounded-[4px]", "cursor-pointer", "transition-colors", "hover:bg-[#0000000f]", "dark:hover:bg-[#ffffff1f]", "dark:hover:text-[#ffffffd9]"]
+})
 
 onClickOutside(target, (event: any) => {
-  if (event.clientX > target.value.offsetLeft) return;
-  show.value = false;
-});
+  if (event.clientX > target.value.offsetLeft) return
+  show.value = false
+})
 
 onMounted(() => {
   emitter.on("openPanel", () => {
-    show.value = true;
-  });
-});
+    show.value = true
+  })
+})
 
 onBeforeUnmount(() => {
   // 解绑`openPanel`公共事件，防止多次触发
-  emitter.off("openPanel");
-});
+  emitter.off("openPanel")
+})
 </script>
 
 <template>
@@ -47,18 +36,10 @@ onBeforeUnmount(() => {
         <div class="project-configuration">
           <h4 class="dark:text-white">项目配置</h4>
           <span title="关闭配置" :class="iconClass">
-            <IconifyIconOffline
-              class="dark:text-white"
-              width="20px"
-              height="20px"
-              :icon="Close"
-              @click="show = !show"
-            />
+            <IconifyIconOffline class="dark:text-white" width="20px" height="20px" :icon="Close" @click="show = !show" />
           </span>
         </div>
-        <div
-          class="border-b-[1px] border-solid border-[#dcdfe6] dark:border-[#303030]"
-        />
+        <div class="border-b-[1px] border-solid border-[#dcdfe6] dark:border-[#303030]" />
         <slot />
       </div>
     </div>
