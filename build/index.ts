@@ -27,4 +27,4 @@ const wrapperEnv = (envConf: Recordable): ViteEnv => {
   return ret
 }
 
-export { wrapperEnv as wrapperEnv }
+export { wrapperEnv }

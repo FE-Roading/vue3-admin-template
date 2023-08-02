@@ -13,6 +13,7 @@
     "eamodio.gitlens",
     "antfu.iconify",
     "vue.volar",
-    "jasonhzq.vscode-pont"
+    "jasonhzq.vscode-pont",
+    "streetsidesoftware.code-spell-checker"
   ]
 }

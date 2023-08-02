@@ -5,25 +5,12 @@ import { wrapperEnv as wrapperEnv } from "./build"
 import { getPluginsList } from "./build/plugins"
 import { include, exclude } from "./build/optimize"
 import { UserConfigExport, ConfigEnv, loadEnv } from "vite"
-
-/** 当前执行node命令时文件夹的地址（工作目录） */
-const root: string = process.cwd()
-
-/** 路径查找 */
-const pathResolve = (dir: string): string => {
-  return resolve(__dirname, ".", dir)
-}
-
-/** 设置别名 */
-const alias: Record<string, string> = {
-  "@": pathResolve("src"),
-  "@build": pathResolve("build"),
-}
+import { defDTFormat } from "./src/config/dt"
 
 const { name, version } = pkg
 const __APP_INFO__ = {
   pkg: { name, version },
-  lastBuildTime: dayjs(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+  lastBuildTime: dayjs(new Date()).format(defDTFormat.dateTime),
 }
 
 export default ({ command, mode }: ConfigEnv): UserConfigExport => {
@@ -51,7 +38,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       exclude,
     },
     build: {
-      sourcemap: false,
+      sourcemap: mode != "prod",
       // 消除打包大小超过500kb警告
       chunkSizeWarningLimit: 4000,
       rollupOptions: {
@@ -71,4 +58,18 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       __APP_INFO__: JSON.stringify(__APP_INFO__),
     },
   }
+}
+
+/** 当前执行node命令时文件夹的地址（工作目录） */
+const root: string = process.cwd()
+
+/** 路径查找 */
+const pathResolve = (dir: string): string => {
+  return resolve(__dirname, ".", dir)
+}
+
+/** 设置别名 */
+const alias: Record<string, string> = {
+  "@": pathResolve("src"),
+  "@build": pathResolve("build"),
 }
