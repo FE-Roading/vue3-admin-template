@@ -1,18 +1,17 @@
 import { message } from "@/utils/message"
 import { useEventListener } from "@vueuse/core"
 import { copyTextToClipboard } from "@pureadmin/utils"
-import type { Directive, DirectiveBinding } from "vue"
+import { toRaw, type Directive, type DirectiveBinding } from "vue"
 
 interface CopyEl extends HTMLElement {
   copyValue: string
 }
 
-/** 文本复制指令（默认双击复制） */
-export const copy: Directive = {
+const copy: Directive = {
   mounted(el: CopyEl, binding: DirectiveBinding) {
     const { value } = binding
     if (value) {
-      el.copyValue = value
+      el.copyValue = toRaw(value)
       const arg = binding.arg ?? "dblclick"
       // Register using addEventListener on mounted, and removeEventListener automatically on unmounted
       useEventListener(el, arg, () => {
@@ -27,3 +26,5 @@ export const copy: Directive = {
     el.copyValue = binding.value
   },
 }
+
+export default copy

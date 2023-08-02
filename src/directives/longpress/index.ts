@@ -2,7 +2,7 @@ import { useEventListener } from "@vueuse/core"
 import type { Directive, DirectiveBinding } from "vue"
 import { subBefore, subAfter, isFunction } from "@pureadmin/utils"
 
-export const longpress: Directive = {
+const longpress: Directive = {
   mounted(el: HTMLElement, binding: DirectiveBinding) {
     const cb = binding.value
     if (cb && isFunction(cb)) {
@@ -59,3 +59,5 @@ export const longpress: Directive = {
     }
   },
 }
+
+export default longpress
