@@ -1,0 +1,6 @@
+.husky
+.vscode
+.git
+dist
+public
+./src/assets
