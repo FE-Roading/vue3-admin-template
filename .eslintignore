@@ -1,7 +1,19 @@
+*.sh
+*.woff
+*.ttf
+*.d.ts
+
+.husky
+.vscode
+.local
+.idea
 public
 dist
-*.d.ts
+/public
+/docs
+/bin
 ./src/assets
+
 package.json
 .eslintrc.js
 .prettierrc.js
@@ -9,5 +21,3 @@ commitlint.config.js
 postcss.config.js
 tailwind.config.js
 stylelint.config.js
-.husky
-.vscode
