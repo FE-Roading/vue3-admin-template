@@ -1,6 +1,6 @@
-export const year = "yy"
+export const year = "YY"
 export const month = "MM"
-export const day = "dd"
+export const day = "DD"
 export const hour = "HH"
 export const minute = "mm"
 export const seconds = "ss"
