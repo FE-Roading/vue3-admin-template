@@ -6,7 +6,7 @@ import { useMultiTagsStoreHook } from "@/store/modules/multiTags"
 import { usePermissionStoreHook } from "@/store/modules/permission"
 import { Router, createRouter, RouteRecordRaw, RouteComponent } from "vue-router"
 import { ascending, getTopMenu, initRouter, isOneOfArray, getHistoryMode, findRouteByPath, handleAliveRoute, formatTwoStageRoutes, formatFlatteningRoutes } from "./utils"
-import { buildHierarchyTree } from "@/utils/tree"
+import { buildHierarchyTree } from "@/utils/menu"
 import { isUrl, openLink, storageSession, isAllEmpty } from "@pureadmin/utils"
 
 import remainingRouter from "./modules/remaining"
