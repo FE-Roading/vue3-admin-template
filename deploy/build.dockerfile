@@ -1,14 +1,17 @@
-FROM node:16.13-alpine as base
+FROM node:16.18.1-alpine as base
+ENV PNPM_HOME="/pnpm"
+ENV PATH="$PNPM_HOME:$PATH"
+RUN corepack enable
 
 # 修改构建目录，防止在根目录构建时，偶尔出现的/proc报错
 WORKDIR /app
 ADD . ./
 
 RUN npm config set registry https://registry.npmmirror.com
-RUN npm install
+RUN pnpm install
 
 # 开启构建工作
-RUN npm run build
+RUN pnpm run build:test
 
 # nginx服务构建
 FROM nginx:1.18 as server
