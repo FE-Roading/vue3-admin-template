@@ -2,7 +2,7 @@ import Axios, { AxiosInstance, AxiosRequestConfig, CustomParamsSerializer } from
 import { PureHttpError, RequestMethods, PureHttpResponse, PureHttpRequestConfig } from "./types.d"
 import { stringify } from "qs"
 import NProgress from "../progress"
-import { getToken, formatToken } from "@/utils/auth"
+import { getToken, formatToken, ApiTokenKey } from "@/utils/auth"
 import { useUserStoreHook } from "@/store/modules/user"
 
 // 相关配置请参考：www.axios-js.com/zh-cn/docs/#axios-request-config-1
@@ -42,7 +42,7 @@ class PureHttp {
   private static retryOriginalRequest(config: PureHttpRequestConfig) {
     return new Promise((resolve) => {
       PureHttp.requests.push((token: string) => {
-        config.headers["Authorization"] = formatToken(token)
+        config.headers[ApiTokenKey] = formatToken(token)
         resolve(config)
       })
     })
@@ -80,7 +80,7 @@ class PureHttp {
                       .handRefreshToken({ refreshToken: data.refreshToken })
                       .then((res) => {
                         const token = res.data.accessToken
-                        config.headers["Authorization"] = formatToken(token)
+                        config.headers[ApiTokenKey] = formatToken(token)
                         PureHttp.requests.forEach((cb) => cb(token))
                         PureHttp.requests = []
                       })
@@ -90,7 +90,7 @@ class PureHttp {
                   }
                   resolve(PureHttp.retryOriginalRequest(config))
                 } else {
-                  config.headers["Authorization"] = formatToken(data.accessToken)
+                  config.headers[ApiTokenKey] = formatToken(data.accessToken)
                   resolve(config)
                 }
               } else {
