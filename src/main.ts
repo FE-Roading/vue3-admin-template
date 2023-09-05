@@ -3,7 +3,7 @@ import router from "./router"
 import { setupStore } from "@/store"
 import ElementPlus from "element-plus"
 import { getServerConfig } from "./config"
-import { createApp, Directive } from "vue"
+import { createApp } from "vue"
 import { MotionPlugin } from "@vueuse/motion"
 // import { useEcharts } from "@/plugins/echarts";
 import { injectResponsiveStorage } from "@/utils/responsive"
@@ -25,10 +25,8 @@ import "./assets/iconfont/iconfont.css"
 const app = createApp(App)
 
 // 自定义指令
-import * as directives from "@/directives"
-Object.keys(directives).forEach((key) => {
-  app.directive(key, (directives as { [key: string]: Directive })[key])
-})
+import directives from "@/directives"
+app.use(directives)
 
 // 全局注册`@iconify/vue`图标库
 import { IconifyIconOffline, IconifyIconOnline, FontIcon } from "./components/ReIcon"

@@ -6,14 +6,14 @@
 
 <script setup lang="ts" name="Grid">
 import { ref, watch, useSlots, computed, provide, onBeforeMount, onMounted, onUnmounted, onDeactivated, onActivated, VNodeArrayChildren, VNode } from "vue"
-import type { BreakPoint } from "./type"
+import type { BreakPoint, Gap } from "./type"
 
 type Props = {
   cols?: number | Record<BreakPoint, number>
   collapsed?: boolean
   collapsedRows?: number
   // [行间距，列间距] | 行列间距
-  gap?: [number, number] | number
+  gap?: Gap
 }
 
 const props = withDefaults(defineProps<Props>(), {

@@ -4,3 +4,5 @@ export type Responsive = {
   span?: number
   offset?: number
 }
+
+export type Gap = [number, number] | number
