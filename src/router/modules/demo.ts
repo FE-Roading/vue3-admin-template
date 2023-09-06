@@ -3,7 +3,7 @@ export default {
   redirect: "/demo/search",
   meta: {
     icon: "informationLine",
-    title: "测试页面",
+    title: "组件demo",
     // showLink: false,
     rank: 9,
   },
@@ -13,7 +13,7 @@ export default {
       name: "search",
       component: () => import("@/views/demos/search.vue"),
       meta: {
-        title: "search",
+        title: "搜索组件",
       },
     },
   ],
