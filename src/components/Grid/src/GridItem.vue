@@ -3,22 +3,11 @@
     <slot />
   </div>
 </template>
-<script setup lang="ts" name="GridItem">
+<script setup lang="ts">
 import { computed, inject, Ref, ref, useAttrs, watch } from "vue"
-import { BreakPoint, Responsive } from "./type"
+import { BreakPoint, GridItemProps } from "./type"
 
-type Props = {
-  offset?: number
-  span?: number
-  suffix?: boolean
-  xs?: Responsive
-  sm?: Responsive
-  md?: Responsive
-  lg?: Responsive
-  xl?: Responsive
-}
-
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<GridItemProps>(), {
   offset: 0,
   span: 1,
   suffix: false,
@@ -27,6 +16,10 @@ const props = withDefaults(defineProps<Props>(), {
   md: undefined,
   lg: undefined,
   xl: undefined,
+})
+
+defineOptions({
+  name: "GridItem",
 })
 
 const attrs = useAttrs() as { index: string }

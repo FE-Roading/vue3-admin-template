@@ -6,3 +6,14 @@ export type Responsive = {
 }
 
 export type Gap = [number, number] | number
+
+export type GridItemProps = {
+  offset?: number
+  span?: number
+  suffix?: boolean
+  xs?: Responsive
+  sm?: Responsive
+  md?: Responsive
+  lg?: Responsive
+  xl?: Responsive
+}
