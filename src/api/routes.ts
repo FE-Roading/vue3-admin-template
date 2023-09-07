@@ -1,4 +1,4 @@
-import { http } from "@/utils/http"
+import request from "@/utils/request"
 
 type Result = {
   success: boolean
@@ -6,5 +6,5 @@ type Result = {
 }
 
 export const getAsyncRoutes = () => {
-  return http.request<Result>("get", "/getAsyncRoutes")
+  return request.request<Result>("get", "/getAsyncRoutes", {}, { useRawRes: true })
 }
