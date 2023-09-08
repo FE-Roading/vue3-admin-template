@@ -4,7 +4,7 @@ import { FormItemProps } from "element-plus"
 import { type GridItemProps, GridItem } from "@/components/Grid"
 import { FormSymbol } from "./type"
 
-type IndexProps = FormItemProps &
+type IndexProps = Partial<FormItemProps> &
   GridItemProps & {
     // 用于Grid展开和折叠时的隐藏序号计算
     index: string
@@ -14,7 +14,7 @@ defineOptions({
   name: "SearchItem",
 })
 const props = defineProps<IndexProps>()
-const formValue = inject(FormSymbol)
+const formValue = inject<Record<string, any>>(FormSymbol)
 
 const gridItemPropsKeys = ["offset", "span", "suffix", "xs", "sm", "md", "lg", "xl", "index"]
 const latestProps = computed<{ gridItemProps: GridItemProps; formItemProps: FormItemProps }>(() => {
@@ -22,7 +22,7 @@ const latestProps = computed<{ gridItemProps: GridItemProps; formItemProps: Form
   const _formItemProps: any = {}
   const _props = toRaw(props)
 
-  Object.keys(_props).forEach((key) => {
+  Object.keys(_props).forEach(key => {
     if (gridItemPropsKeys.includes(key)) {
       _gridItemProps[key] = _props[key]
     } else {

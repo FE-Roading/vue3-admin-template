@@ -2,15 +2,15 @@
 import { ref, useSlots, provide, computed, nextTick } from "vue"
 import { FormInstance } from "element-plus"
 import { Delete, Search, ArrowDown, ArrowUp } from "@element-plus/icons-vue"
-import { Grid, GridItem, BreakPoint } from "@/components/Grid"
+import { Grid, GridItem } from "@/components/Grid"
 import { removeEmptyProperties } from "@/utils/common"
-import { FormSymbol } from "./type"
+import { FormSymbol, SearchCol } from "./type"
 import { unref } from "vue"
 
 interface IndexProps {
   initialValue?: { [key: string]: any } // 表单初始值
   defaultValue?: { [key: string]: any } // 表单默认值，reset时使用
-  searchCol?: number | Record<BreakPoint, number>
+  searchCol?: SearchCol
 }
 
 // 默认值

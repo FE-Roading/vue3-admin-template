@@ -5,4 +5,6 @@ export type Responsive = {
   offset?: number
 }
 
+export type SearchCol = number | Record<BreakPoint, number>
+
 export const FormSymbol = Symbol("search-form")

@@ -17,10 +17,11 @@
     "allowJs": false,
     "resolveJsonModule": true,
     "lib": ["dom", "esnext"],
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"],
-      "@build/*": ["./build/*"]
+      "@": ["src"],
+      "@/*": ["src/*"],
+      "@build/*": ["build/*"]
     },
     "types": ["node", "vite/client", "element-plus/global", "@pureadmin/table/volar", "@pureadmin/descriptions/volar"]
   },

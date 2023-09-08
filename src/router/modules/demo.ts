@@ -16,5 +16,13 @@ export default {
         title: "搜索组件",
       },
     },
+    {
+      path: "/demo/table",
+      name: "table",
+      component: () => import("@/views/demos/table.vue"),
+      meta: {
+        title: "列表页",
+      },
+    },
   ],
 } as RouteConfigsTable

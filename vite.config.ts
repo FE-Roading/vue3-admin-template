@@ -65,7 +65,7 @@ const root: string = process.cwd()
 
 /** 路径查找 */
 const pathResolve = (dir: string): string => {
-  return resolve(__dirname, ".", dir)
+  return resolve(__dirname, "./", dir)
 }
 
 /** 设置别名 */
