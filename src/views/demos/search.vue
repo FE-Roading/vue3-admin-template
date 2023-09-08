@@ -23,7 +23,7 @@ const initialValue = {
 
 <template>
   <div class="demo-search-pg">
-    <Search @search="onSearch" @reset="onReset" showCollapse :defaultValue="defaultValue" :initialValue="initialValue">
+    <Search @search="onSearch" @reset="onReset" :defaultValue="defaultValue" :initialValue="initialValue">
       <SearchItem index="0" label="field1" prop="field1">
         <template #default="query">
           <el-input placeholder="input field" v-model="query.value.field1" />

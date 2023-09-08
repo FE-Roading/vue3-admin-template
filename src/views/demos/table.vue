@@ -18,12 +18,12 @@
             <el-input placeholder="input field" v-model="query.value.field1" />
           </template>
         </SearchItem>
-        <SearchItem index="0" label="field2" prop="field2">
+        <SearchItem index="1" label="field2" prop="field2">
           <template #default="query">
             <el-input placeholder="input field" v-model="query.value.field2" />
           </template>
         </SearchItem>
-        <SearchItem index="0" label="field3" prop="field3">
+        <SearchItem index="2" label="field3" prop="field3">
           <template #default="query">
             <el-input placeholder="input field" v-model="query.value.field3" />
           </template>

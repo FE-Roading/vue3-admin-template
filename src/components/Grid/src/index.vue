@@ -5,7 +5,20 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, useSlots, computed, provide, onBeforeMount, onMounted, onUnmounted, onDeactivated, onActivated, VNodeArrayChildren, VNode } from "vue"
+import {
+  ref,
+  watch,
+  useSlots,
+  computed,
+  provide,
+  onBeforeMount,
+  onMounted,
+  onUnmounted,
+  onDeactivated,
+  onActivated,
+  VNodeArrayChildren,
+  VNode,
+} from "vue"
 import type { BreakPoint, Gap } from "./type"
 
 defineOptions({
@@ -95,18 +108,33 @@ const findIndex = () => {
     // suffix
     if (typeof slot.type === "object" && slot.type.name === "GridItem" && slot.props?.suffix !== undefined) suffix = slot
     // slot children
-    if (typeof slot.type === "symbol" && Array.isArray(slot.children)) fields.push(...slot.children)
+    if (typeof slot.type === "symbol" && Array.isArray(slot.children) && slot.children.length > 0) {
+      if (
+        slot.children.length === 1 &&
+        typeof slot.children[0].type === "symbol" &&
+        Array.isArray(slot.children[0].children) &&
+        slot.children[0].children.length > 0
+      ) {
+        fields.push(...slot.children[0].children)
+      } else {
+        fields.push(...slot.children)
+      }
+    }
   })
 
   // 计算 suffix 所占用的列
   let suffixCols = 0
   if (suffix) {
-    suffixCols = ((suffix as VNode).props?.[breakPoint.value]?.span ?? (suffix as VNode).props?.span ?? 1) + ((suffix as VNode).props![breakPoint.value]?.offset ?? (suffix as VNode).props?.offset ?? 0)
+    suffixCols =
+      ((suffix as VNode).props?.[breakPoint.value]?.span ?? (suffix as VNode).props?.span ?? 1) +
+      ((suffix as VNode).props![breakPoint.value]?.offset ?? (suffix as VNode).props?.offset ?? 0)
   }
   try {
     let find = false
     const accumlatedSpan = fields.reduce<number>((prev = 0, current, index) => {
-      prev += ((current as VNode)!.props?.[breakPoint.value]?.span ?? (current as VNode)!.props?.span ?? 1) + ((current as VNode)!.props?.[breakPoint.value]?.offset ?? (current as VNode)!.props?.offset ?? 0)
+      prev +=
+        ((current as VNode)!.props?.[breakPoint.value]?.span ?? (current as VNode)!.props?.span ?? 1) +
+        ((current as VNode)!.props?.[breakPoint.value]?.offset ?? (current as VNode)!.props?.offset ?? 0)
 
       if (!find && Number(prev) > props.collapsedRows * gridCols.value - suffixCols) {
         hiddenIndex.value = index
@@ -114,7 +142,13 @@ const findIndex = () => {
       }
       return prev
     }, 0)
-    canCcllapsed.value = gridCols.value < accumlatedSpan
+
+    if (gridCols.value == 1) {
+      canCcllapsed.value = false
+      hiddenIndex.value = -1
+    } else {
+      canCcllapsed.value = gridCols.value < accumlatedSpan
+    }
 
     if (!find) hiddenIndex.value = -1
   } catch (e) {
@@ -133,7 +167,7 @@ watch(
 // 监听 collapsed
 watch(
   () => props.collapsed,
-  (value) => {
+  value => {
     if (value) return findIndex()
     hiddenIndex.value = -1
   },
