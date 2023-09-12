@@ -72,6 +72,8 @@ export interface TablePageProps {
   border?: boolean // 是否带有纵向边框 ==> 非必传（默认为true）
   toolButton?: boolean // 是否显示表格功能按钮 ==> 非必传（默认为true）
   rowKey?: string // 行数据的 Key，用来优化 Table 的渲染，当表格数据多选时，所指定的 id ==> 非必传（默认为 id）
+
+  paginationLayout?: string
 }
 
 export type TablePageInstance = Omit<InstanceType<typeof TablePage>, keyof ComponentPublicInstance | keyof TablePageProps>

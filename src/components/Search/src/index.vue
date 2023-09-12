@@ -57,7 +57,7 @@ const onSearch = () => {
 </script>
 
 <template>
-  <div class="card table-search" v-if="slots.length > 0">
+  <div class="card search-com" v-if="slots.length > 0">
     <el-form ref="formRef" :model="formValue">
       <Grid :collapsed="collapsed" :gap="[20, 0]" :cols="searchCol" ref="gridRef">
         <slot :value="formValue" />
@@ -77,3 +77,11 @@ const onSearch = () => {
     </el-form>
   </div>
 </template>
+
+<style lang="scss">
+.search-com {
+  .operation {
+    margin-bottom: 18px;
+  }
+}
+</style>

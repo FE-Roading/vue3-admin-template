@@ -1,67 +1,3 @@
-<template>
-  <div class="table-box">
-    <TablePage
-      rowKey="id"
-      ref="proTable"
-      title="用户列表"
-      :columns="columns"
-      :request-api="getTableData"
-      border
-      search-visible
-      :search-initial-value="searchInitialValue"
-      :search-default-value="searchDefaultValue"
-    >
-      <!-- 表格 header 按钮 -->
-      <template #search>
-        <SearchItem index="0" label="field1" prop="field1">
-          <template #default="query">
-            <el-input placeholder="input field" v-model="query.value.field1" />
-          </template>
-        </SearchItem>
-        <SearchItem index="1" label="field2" prop="field2">
-          <template #default="query">
-            <el-input placeholder="input field" v-model="query.value.field2" />
-          </template>
-        </SearchItem>
-        <SearchItem index="2" label="field3" prop="field3">
-          <template #default="query">
-            <el-input placeholder="input field" v-model="query.value.field3" />
-          </template>
-        </SearchItem>
-      </template>
-      <template #headerLeft>
-        <el-button v-auth="'add'" type="primary" :icon="CirclePlus" @click="console.log"> 新增用户 </el-button>
-        <el-button v-auth="'batchAdd'" type="primary" :icon="Upload" plain @click="console.log"> 批量添加用户 </el-button>
-        <el-button v-auth="'export'" type="primary" :icon="Download" plain @click="console.log"> 导出用户数据 </el-button>
-        <el-button type="primary" plain @click="toDetail"> To 子集详情页面 </el-button>
-      </template>
-      <!-- Expand -->
-      <template #expand="scope">
-        {{ scope.row }}
-      </template>
-      <!-- usernameHeader -->
-      <template #usernameHeader="scope">
-        <el-button type="primary" @click="ElMessage.success('我是通过作用域插槽渲染的表头')">
-          {{ scope.column.label }}
-        </el-button>
-      </template>
-      <!-- createTime -->
-      <template #createTime="scope">
-        <el-button type="primary" link @click="ElMessage.success('我是通过作用域插槽渲染的内容')">
-          {{ scope.row.createTime }}
-        </el-button>
-      </template>
-      <!-- 表格操作 -->
-      <template #operation="scope">
-        <el-button type="primary" link :icon="View" @click="onOperate(scope)"> 查看 </el-button>
-        <el-button type="primary" link :icon="EditPen" @click="onOperate(scope)"> 编辑 </el-button>
-        <el-button type="primary" link :icon="Refresh" @click="onOperate(scope)"> 重置密码 </el-button>
-        <el-button type="primary" link :icon="Delete" @click="onOperate(scope)"> 删除 </el-button>
-      </template>
-    </TablePage>
-  </div>
-</template>
-
 <script setup lang="tsx">
 import { ref, reactive } from "vue"
 import { useRouter } from "vue-router"
@@ -138,6 +74,7 @@ const columns: ColumnProps<any>[] = [
     // 多级 prop
     prop: "user.detail.age",
     label: "年龄",
+    sortable: true,
   },
   { prop: "idCard", label: "身份证号", search: { el: "input" } },
   { prop: "email", label: "邮箱" },
@@ -177,3 +114,73 @@ function onOperate(data) {
   console.log("data: ", data)
 }
 </script>
+<template>
+  <div class="table-box">
+    <TablePage
+      rowKey="id"
+      ref="proTable"
+      title="用户列表"
+      :columns="columns"
+      :request-api="getTableData"
+      border
+      search-visible
+      :search-initial-value="searchInitialValue"
+      :search-default-value="searchDefaultValue"
+    >
+      <!-- 表格 header 按钮 -->
+      <template #search>
+        <SearchItem index="0" label="field1" prop="field1">
+          <template #default="query">
+            <el-input placeholder="input field" v-model="query.value.field1" />
+          </template>
+        </SearchItem>
+        <SearchItem index="1" label="field2" prop="field2">
+          <template #default="query">
+            <el-input placeholder="input field" v-model="query.value.field2" />
+          </template>
+        </SearchItem>
+        <SearchItem index="2" label="field3" prop="field3">
+          <template #default="query">
+            <el-input placeholder="input field" v-model="query.value.field3" />
+          </template>
+        </SearchItem>
+      </template>
+      <template #headerLeft>
+        <div>
+          <el-button type="primary" :icon="CirclePlus" @click="console.log"> 新增用户 </el-button>
+          <el-button type="primary" :icon="Upload" plain @click="console.log"> 批量添加用户 </el-button>
+          <el-button type="primary" :icon="Download" plain @click="console.log"> 导出用户数据 </el-button>
+          <el-button type="primary" plain @click="toDetail"> To 子集详情页面 </el-button>
+        </div>
+      </template>
+      <!-- Expand -->
+      <template #expand="scope">
+        {{ scope.row }}
+      </template>
+      <!-- usernameHeader -->
+      <template #usernameHeader="scope">
+        <el-button type="primary" @click="ElMessage.success('我是通过作用域插槽渲染的表头')">
+          {{ scope.column.label }}
+        </el-button>
+      </template>
+      <!-- createTime -->
+      <template #createTime="scope">
+        <el-button type="primary" link @click="ElMessage.success('我是通过作用域插槽渲染的内容')">
+          {{ scope.row.createTime }}
+        </el-button>
+      </template>
+      <!-- 表格操作 -->
+      <template #operation="scope">
+        <el-button type="primary" link :icon="View" @click="onOperate(scope)"> 查看 </el-button>
+        <el-button type="primary" link :icon="EditPen" @click="onOperate(scope)"> 编辑 </el-button>
+        <el-button type="primary" link :icon="Refresh" @click="onOperate(scope)"> 重置密码 </el-button>
+        <el-button type="primary" link :icon="Delete" @click="onOperate(scope)"> 删除 </el-button>
+      </template>
+    </TablePage>
+  </div>
+</template>
+<style scoped lang="scss">
+.table-box {
+  height: calc(100vh - 133px);
+}
+</style>
