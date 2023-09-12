@@ -147,7 +147,7 @@ const findIndex = () => {
       canCcllapsed.value = false
       hiddenIndex.value = -1
     } else {
-      canCcllapsed.value = gridCols.value < accumlatedSpan
+      canCcllapsed.value = suffix ? gridCols.value <= accumlatedSpan : gridCols.value < accumlatedSpan
     }
 
     if (!find) hiddenIndex.value = -1
